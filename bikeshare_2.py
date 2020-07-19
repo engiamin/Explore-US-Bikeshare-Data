@@ -209,6 +209,25 @@ def user_stats(df):
     print('-'*40)
 
 
+def display_data(df):
+    response = str(input ("\n Do you want to see raw data?\n"))
+    counter=0
+    while True:
+        if response.lower() == "yes":
+            showData = df.iloc[counter:counter+5]
+            print("\n",showData)
+            counter = counter + 5
+            response = str(input ("\n Do you want to see 5 lines more of raw data?\n"))
+        elif response.lower()=="no":
+            break
+        else:
+            print("\n Please enter a valid response (yes/no)")
+            response = str(input ("\n Do you want to see 5 lines of raw data?\n"))
+
+    print('-'*40)
+
+
+
 def main():
     while True:
         city, month, day = get_filters()
@@ -217,6 +236,7 @@ def main():
         station_stats(df)
         trip_duration_stats(df)
         user_stats(df)
+        display_data(df)
         restart = input('\nWould you like to restart? Enter yes or no.\n')
         if restart.lower() != 'yes':
             break
